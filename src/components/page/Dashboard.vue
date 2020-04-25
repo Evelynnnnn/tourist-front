@@ -36,36 +36,20 @@
             </el-col>
             <el-col :span="16">
                 <el-card shadow="hover" style="height:240px;margin-bottom: 20px;">
-                    <el-alert
-                            title="景点一"
-                            type="success"
-                            description="测试1设置预警人数为80，当前人数59，未超过预警人数"
-                            :closable="false">
-                    </el-alert>
-                    <el-alert
-                            title="景点二"
-                            type="info"
-                            description="测试2设置预警人数为80，当前人数73，未超过预警人数"
-                            close-text="知道了">
-                    </el-alert>
-                    <el-alert
-                            title="景点三"
-                            type="warning"
-                            description="测试2设置预警人数为80，当前人数139，已经超过预警人数！"
-                            @close="false">
-                    </el-alert>
-                    <el-alert
-                            title="景点四"
-                            type="info"
-                            description="测试2设置预警人数为80，当前人数25，未超过预警人数"
-                            close-text="知道了">
-                    </el-alert>
-                    <el-alert
-                            title="景点五"
-                            type="info"
-                            description="测试2设置预警人数为80，当前人数67，未超过预警人数"
-                            close-text="知道了">
-                    </el-alert>
+                    <el-tabs type="border-card">
+                        <el-tab-pane label="用户管理">
+                            <el-table>
+                                <el-table-column
+                                        prop="date"
+                                        label="今日最高"
+                                        width="180">
+                                </el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="配置管理">配置管理</el-tab-pane>
+                        <el-tab-pane label="角色管理">角色管理</el-tab-pane>
+                        <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+                    </el-tabs>
                 </el-card>
                 <el-card >
                     <div >
@@ -76,11 +60,11 @@
                             <el-tabs :tab-position="tabPosition" style="height: 319px;">
                                 <el-tab-pane label="今日天气" style="white-space: normal">天气状况 小雨 转阴 15℃～22℃ 东风3~4级 </el-tab-pane>
                                 <el-tab-pane label="明日天气">天气状况 晴 转多云 16℃～22℃ 东风3~4级</el-tab-pane>
-                                <el-tab-pane label="一号景点人数" style="white-space: normal">当前人数:59</el-tab-pane>
-                                <el-tab-pane label="二号景点人数">当前人数:73</el-tab-pane>
-                                <el-tab-pane label="三号景点人数">当前人数:139</el-tab-pane>
-                                <el-tab-pane label="四号景点人数">当前人数:25</el-tab-pane>
-                                <el-tab-pane label="五号景点人数">当前人数:67</el-tab-pane>
+                                <el-tab-pane label="一号景点人数" style="white-space: normal">当前人数:{{addressOne}}</el-tab-pane>
+                                <el-tab-pane label="二号景点人数">当前人数:{{addressTwo}}</el-tab-pane>
+                                <el-tab-pane label="三号景点人数">当前人数:{{addressThree}}</el-tab-pane>
+                                <el-tab-pane label="四号景点人数">当前人数:{{addressFour}}</el-tab-pane>
+                                <el-tab-pane label="五号景点人数">当前人数:{{addressFive}}</el-tab-pane>
                             </el-tabs>
                         </div>
                     </div>
@@ -100,6 +84,11 @@ export default {
     name: 'dashboard',
     data() {
         return {
+            addressOne:'',
+            addressTwo:'',
+            addressThree:'',
+            addressFour:'',
+            addressFive:'',
             options:[],
             value:'',
             imgUrl:'',
@@ -134,6 +123,11 @@ export default {
         }
     },
     created() {
+        this.getPersonNumber1();
+        this.getPersonNumber2();
+        this.getPersonNumber3();
+        this.getPersonNumber4();
+        this.getPersonNumber5();
         //this.handleListener();
         //this.changeDate();
         this.getAddressName();
@@ -148,6 +142,31 @@ export default {
     //     bus.$off('collapse', this.handleBus);
     // },
     methods: {
+        getPersonNumber1(){
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试1').then(successResponse => {
+                this.addressOne =  successResponse.data
+            })
+        },
+        getPersonNumber2(){
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试2').then(successResponse => {
+                this.addressTwo =  successResponse.data
+            })
+        },
+        getPersonNumber3(){
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试3').then(successResponse => {
+                this.addressThree =  successResponse.data
+            })
+        },
+        getPersonNumber4(){
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试4').then(successResponse => {
+                this.addressFour =  successResponse.data
+            })
+        },
+        getPersonNumber5(){
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试5').then(successResponse => {
+                this.addressFive =  successResponse.data
+            })
+        },
         getAddressName(){
             const that = this
             this.$axios.get('http://localhost:9099/tourist/count/allAddressName').then(successResponse => {
