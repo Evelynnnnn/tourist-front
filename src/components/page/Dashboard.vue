@@ -36,35 +36,58 @@
             </el-col>
             <el-col :span="16">
                 <el-card shadow="hover" style="height:240px;margin-bottom: 20px;">
-                    <el-tabs type="border-card">
-                        <el-tab-pane label="用户管理">
-                            <el-table>
-                                <el-table-column
-                                        prop="date"
-                                        label="今日最高"
-                                        width="180">
-                                </el-table-column>
-                            </el-table>
-                        </el-tab-pane>
-                        <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-                        <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-                        <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
-                    </el-tabs>
+                    <div slot="header" class="clearfix" style="height:50px;float: right">
+                        <el-select v-model="value" clearable placeholder="请选择" value-key="value" @change="currentSel(value)">
+                            <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.label">
+                            </el-option>
+                        </el-select>
+                        <el-button type="primary" style="float: right">查看</el-button>
+                    </div>
+                    <el-table>
+                        <el-table-column
+                                prop="date"
+                                label="今日最高"
+                                width="150">
+                        </el-table-column>
+                        <el-table-column
+                                prop="date"
+                                label="今日最低"
+                                width="150">
+                        </el-table-column>
+                        <el-table-column
+                                prop="date"
+                                label="今日平均"
+                                width="150">
+                        </el-table-column>
+                        <el-table-column
+                                prop="date"
+                                label="实时人数"
+                                width="150">
+                        </el-table-column>
+                        <el-table-column
+                                prop="date"
+                                label="负责人员"
+                                width="150">
+                        </el-table-column>
+                    </el-table>
                 </el-card>
                 <el-card >
                     <div >
                         <div style="width: 420px;height: 319px;float:left;">
                             <img :src="imgUrl" style="width: 420px;height: 319px">
                         </div>
-                        <div style="float: right;width: 360px;height: 319px;">
-                            <el-tabs :tab-position="tabPosition" style="height: 319px;">
-                                <el-tab-pane label="今日天气" style="white-space: normal">天气状况 小雨 转阴 15℃～22℃ 东风3~4级 </el-tab-pane>
-                                <el-tab-pane label="明日天气">天气状况 晴 转多云 16℃～22℃ 东风3~4级</el-tab-pane>
-                                <el-tab-pane label="一号景点人数" style="white-space: normal">当前人数:{{addressOne}}</el-tab-pane>
-                                <el-tab-pane label="二号景点人数">当前人数:{{addressTwo}}</el-tab-pane>
-                                <el-tab-pane label="三号景点人数">当前人数:{{addressThree}}</el-tab-pane>
-                                <el-tab-pane label="四号景点人数">当前人数:{{addressFour}}</el-tab-pane>
-                                <el-tab-pane label="五号景点人数">当前人数:{{addressFive}}</el-tab-pane>
+                        <div style="float: right;width: 360px;height: 160px;border-bottom:1px solid #ff4d51">
+                            <el-tabs :tab-position="tabPosition" style="height: 200px;">
+                                <el-tab-pane label="用户管理">用户管理</el-tab-pane>
+                            </el-tabs>
+                        </div>
+                        <div style="float: right;width: 360px;height: 160px;">
+                            <el-tabs :tab-position="tabPosition" style="height: 200px;">
+                                <el-tab-pane label="用户管理">用户管理</el-tab-pane>
                             </el-tabs>
                         </div>
                     </div>
