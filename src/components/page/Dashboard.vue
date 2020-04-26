@@ -45,35 +45,37 @@
                                     :value="item.label">
                             </el-option>
                         </el-select>
-                        <el-button type="primary" style="float: right">查看</el-button>
+                        <el-button @click="getHomeInfo()" type="primary" style="float: right" >查看</el-button>
                     </div>
-                    <el-table>
-                        <el-table-column
-                                prop="date"
-                                label="今日最高"
-                                width="150">
-                        </el-table-column>
-                        <el-table-column
-                                prop="date"
-                                label="今日最低"
-                                width="150">
-                        </el-table-column>
-                        <el-table-column
-                                prop="date"
-                                label="今日平均"
-                                width="150">
-                        </el-table-column>
-                        <el-table-column
-                                prop="date"
-                                label="实时人数"
-                                width="150">
-                        </el-table-column>
-                        <el-table-column
-                                prop="date"
-                                label="负责人员"
-                                width="150">
-                        </el-table-column>
-                    </el-table>
+                    <div>
+                        <el-table :data="tableData" >
+                            <el-table-column
+                                    prop="max"
+                                    label="今日最高"
+                                    width="157">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="min"
+                                    label="今日最低"
+                                    width="156">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="avg"
+                                    label="今日平均"
+                                    width="156">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="now"
+                                    label="实时人数"
+                                    width="157">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="staff"
+                                    label="负责人员"
+                                    width="157">
+                            </el-table-column>
+                        </el-table>
+                    </div>
                 </el-card>
                 <el-card >
                     <div >
@@ -82,12 +84,12 @@
                         </div>
                         <div style="float: right;width: 360px;height: 160px;border-bottom:1px solid #ff4d51">
                             <el-tabs :tab-position="tabPosition" style="height: 200px;">
-                                <el-tab-pane label="用户管理">用户管理</el-tab-pane>
+                                <el-tab-pane label="今日天气">{{this.todayWeather}}</el-tab-pane>
                             </el-tabs>
                         </div>
                         <div style="float: right;width: 360px;height: 160px;">
                             <el-tabs :tab-position="tabPosition" style="height: 200px;">
-                                <el-tab-pane label="用户管理">用户管理</el-tab-pane>
+                                <el-tab-pane label="明日天气">{{this.tomorrowWeather}}</el-tab-pane>
                             </el-tabs>
                         </div>
                     </div>
@@ -107,6 +109,8 @@ export default {
     name: 'dashboard',
     data() {
         return {
+            todayWeather:'',
+            tomorrowWeather:'',
             addressOne:'',
             addressTwo:'',
             addressThree:'',
@@ -117,12 +121,8 @@ export default {
             imgUrl:'',
             picture:'',
             tabPosition: 'left',
-            count:
-                {
-                    personNumber:'',
-                    placeName:'',
-                    nowTime:''
-                },
+            tableData:[],
+            address:'测试1',
             name: localStorage.getItem('ms_username'),
             playerOptions: {
                 height: '300',
@@ -146,6 +146,8 @@ export default {
         }
     },
     created() {
+        this.getTodayWeather();
+        this.getTomorrowWeather();
         this.getPersonNumber1();
         this.getPersonNumber2();
         this.getPersonNumber3();
@@ -165,6 +167,28 @@ export default {
     //     bus.$off('collapse', this.handleBus);
     // },
     methods: {
+        getTodayWeather(){
+            const that = this
+            this.$axios.get('http://localhost:9099/tourist/weather/todayWeather').then(
+                successResponse => {
+                    that.todayWeather = successResponse.data
+            })
+        },
+        getTomorrowWeather(){
+            const that = this
+            this.$axios.get('http://localhost:9099/tourist/weather/tomorrowWeather').then(
+                successResponse => {
+                    that.tomorrowWeather = successResponse.data
+                })
+        },
+        getHomeInfo(){
+            const that = this
+            this.$axios.post('http://localhost:9099/tourist/count/homeGetInfo',{address:this.address}).then(
+                successResponse => {
+                    that.tableData = successResponse.data
+                }
+            )
+        },
         getPersonNumber1(){
             this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试1').then(successResponse => {
                 this.addressOne =  successResponse.data
@@ -197,16 +221,15 @@ export default {
             })
         },
         currentSel(selVal) {
-            this.param.address = selVal
-            console.log(this.param.address)
+            this.address = selVal
         },
-        changeDate() {
-            const now = new Date().getTime();
-            this.data.forEach((item, index) => {
-                const date = new Date(now - (6 - index) * 86400000);
-                item.name = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-            });
-        },
+        // changeDate() {
+        //     const now = new Date().getTime();
+        //     this.data.forEach((item, index) => {
+        //         const date = new Date(now - (6 - index) * 86400000);
+        //         item.name = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+        //     });
+        // },
         // handleListener() {
         //     bus.$on('collapse', this.handleBus);
         //     // 调用renderChart方法对图表进行重新渲染

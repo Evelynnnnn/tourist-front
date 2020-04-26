@@ -16,8 +16,7 @@
                     header-cell-class-name="table-header"
             >
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
-                <el-table-column label="用户名" prop="name">
-                </el-table-column>
+                <el-table-column label="用户名" prop="name"></el-table-column>
                 <el-table-column prop="dutyAddress" label="负责地点"></el-table-column>
                 <el-table-column prop="mail" label="邮箱"></el-table-column>
                 <el-table-column prop="phone" label="电话"></el-table-column>
