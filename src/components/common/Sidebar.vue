@@ -189,9 +189,13 @@ export default {
                     title: '设置',
                     subs: [
                         {
+                            index: 'numberWarningSetting',
+                            title: '人数预警设置'
+                        },
+                        {
                             index: 'numberWarning',
-                            title: '系统预警设置'
-                        }
+                            title: '人数预警查看'
+                        },
                     ]
                 }
             ]

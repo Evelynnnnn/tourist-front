@@ -26,7 +26,7 @@ export default new Router({
                 },
                 {
                     path:'/test',
-                    component: () => import( '../components/page/tourist/test')
+                    component: () => import( '../components/page/tourist/settings/NumberWarning')
                 },
                 {
                     path:'/userManage',
@@ -49,9 +49,14 @@ export default new Router({
                     meta: { title: '下发通知'}
                 },
                 {
+                    path: '/numberWarningSetting',
+                    component: () => import( '../components/page/tourist/settings/NumberWarningSetting'),
+                    meta: { title: '人数预警设置'}
+                },
+                {
                     path: '/numberWarning',
                     component: () => import( '../components/page/tourist/settings/NumberWarning'),
-                    meta: { title: '系统预警设置'}
+                    meta: { title: '人数预警查看'}
                 },
                 // {
                 //     path: '/tabs',
