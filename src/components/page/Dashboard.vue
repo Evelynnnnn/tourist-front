@@ -12,11 +12,11 @@
                     </div>
                     <div class="user-info-list">
                         上次登录时间：
-                        <span>2019-11-01</span>
+                        <span>{{loginTime}}</span>
                     </div>
                     <div class="user-info-list">
                         上次登录地点：
-                        <span>东莞</span>
+                        <span>{{loginAddress}}</span>
                     </div>
                 </el-card>
                 <el-card shadow="hover" style="height:340px;width: 420px">
@@ -109,6 +109,8 @@ export default {
     name: 'dashboard',
     data() {
         return {
+            loginTime:'',
+            loginAddress:'',
             todayWeather:'',
             tomorrowWeather:'',
             addressOne:'',
@@ -146,6 +148,8 @@ export default {
         }
     },
     created() {
+        this.getLastLoginAddress();
+        this.getLastLoginTime();
         this.getTodayWeather();
         this.getTomorrowWeather();
         this.getPersonNumber1();
@@ -167,6 +171,18 @@ export default {
     //     bus.$off('collapse', this.handleBus);
     // },
     methods: {
+        getLastLoginTime(){
+            const that = this
+            this.$axios.post('http://localhost:9099/tourist/user/lastLoginTime',{username:this.name}).then(successResponse => {
+                that.loginTime = successResponse.data
+            })
+        },
+        getLastLoginAddress(){
+            const that = this
+            this.$axios.post('http://localhost:9099/tourist/user/lastLoginAddress',{username:this.name}).then(successResponse => {
+                that.loginAddress = successResponse.data
+            })
+        },
         getTodayWeather(){
             const that = this
             this.$axios.get('http://localhost:9099/tourist/weather/todayWeather').then(

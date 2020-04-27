@@ -1,6 +1,6 @@
 <template>
     <div class="messege-box">
-        <div class="messege-content">???
+        <div class="messege-content">
             <ul :style="{ 'margin-top': marginTop + '%' }">
                 <li v-for="(item, index) in getData" :key="index">
                     <a>
@@ -23,7 +23,7 @@
         },
         data() {
             return {
-                getData: {},
+                getData:{},
                 activeIndex: 0
             };
         },
