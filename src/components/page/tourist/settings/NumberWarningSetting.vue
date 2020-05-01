@@ -36,7 +36,7 @@
                 <el-button
                         type="primary"
                         icon="el-icon-edit"
-                        @click="handleEdit()"
+                        @click="handleAllEdit()"
                 >一键设置</el-button>
             </div>
             <div class="pagination">
@@ -53,12 +53,23 @@
         <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="70px">
                 <el-form-item label="预警人数">
-                    <el-input v-model="form.warningNumber"></el-input>
+                    <el-input v-model="input" placeholder="请输入数字"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
                     <el-button @click="editVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="saveEdit">确 定</el-button>
+                    <el-button type="primary" @click="settingOne">确 定</el-button>
+                </span>
+        </el-dialog>
+        <el-dialog title="编辑" :visible.sync="editVisible2" width="30%">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-form-item label="预警人数">
+                    <el-input v-model="input" placeholder="请输入数字"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                    <el-button @click="editVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="settingAll">确 定</el-button>
                 </span>
         </el-dialog>
     </div>
@@ -75,10 +86,12 @@
                     pageIndex: 1,
                     pageSize: 10
                 },
+                input:'',
                 tableData: [],
                 multipleSelection: [],
                 delList: [],
                 editVisible: false,
+                editVisible2: false,
                 pageTotal: 0,
                 form: {},
                 idx: -1,
@@ -143,9 +156,19 @@
                 this.form = row;
                 this.editVisible = true;
             },
+            handleAllEdit(index, row) {
+                this.idx = index;
+                this.form = row;
+                this.editVisible2 = true;
+            },
             // 保存编辑
             saveEdit() {
                 this.editVisible = false;
+                this.$message.success(`修改成功`);
+                this.$set(this.tableData, this.idx, this.form);
+            },
+            saveEdit() {
+                this.editVisible2 = false;
                 this.$message.success(`修改成功`);
                 this.$set(this.tableData, this.idx, this.form);
             },
@@ -153,6 +176,22 @@
             handlePageChange(val) {
                 this.$set(this.query, 'pageIndex', val);
                 this.getData();
+            },
+            settingOne(){
+                this.$axios.post('http://localhost:9099/tourist/warning/settingOne',{text:this.input,address:this.tableData[this.idx]["address"]}).then(
+                    successResponse => {
+                        console.log(successResponse)
+                    }
+                )
+                this.saveEdit()
+            },
+            settingAll(){
+                this.$axios.get('http://localhost:9099/tourist/warning/settingAll?number='+this.input).then(
+                    successResponse => {
+                        console.log(successResponse)
+                    }
+                )
+                this.saveEdit()
             }
         }
     }

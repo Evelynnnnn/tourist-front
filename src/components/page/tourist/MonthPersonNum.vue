@@ -101,6 +101,7 @@
                 }).then( successResponse => {
                     that.series = successResponse.data
                     this.initChart();
+                    this.$message.success(`查看成功`);
                 })
             },
             getXNum(){

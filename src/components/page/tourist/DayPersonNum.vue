@@ -85,10 +85,9 @@
                     date:this.param.chooseDate,
                     address:this.param.address
                 }).then( successResponse => {
-                    console.log(this.param.chooseDate)
-                    console.log(this.param.address)
                     that.series = successResponse.data
                     this.initChart();
+                    this.$message.success(`查看成功`);
                 })
             },
             getAddressName(){

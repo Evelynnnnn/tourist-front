@@ -60,6 +60,17 @@
                     <el-button type="primary" @click="test" >确 定</el-button>
                 </span>
         </el-dialog>
+        <el-dialog title="编辑" :visible.sync="editVisible2" width="30%">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-form-item label="工作内容">
+                    <el-input v-model="input" placeholder="请输入内容"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                    <el-button @click="editVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="test2" >确 定</el-button>
+                </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -79,6 +90,7 @@
                 multipleSelection: [],
                 delList: [],
                 editVisible: false,
+                editVisible2: false,
                 pageTotal: 0,
                 form: {},
                 idx: -1,
@@ -100,7 +112,15 @@
             },
             sendEmail(){
                 const that = this
-                this.$axios.post('http://localhost:9099/tourist/staff/sendEmail',{text:this.input}).then(
+                this.$axios.post('http://localhost:9099/tourist/staff/sendEmail',{text:this.input,mail:this.tableData[this.idx]["mail"]}).then(
+                    successResponse => {
+                        console.log(successResponse.status)
+                    }
+                )
+            },
+            sendAllEmail(){
+                const that = this
+                this.$axios.get('http://localhost:9099/tourist/staff/sendAllEmail?text='+this.input).then(
                     successResponse => {
                         console.log(successResponse.status)
                     }
@@ -151,9 +171,18 @@
                 this.form = row;
                 this.editVisible = true;
             },
+            handleEdit(index, row) {
+                this.idx = index;
+                this.form = row;
+                this.editVisible2 = true;
+            },
             // 保存编辑
             saveEdit() {
                 this.editVisible = false;
+                this.$message.success(`已发送邮件至预留邮箱`);
+            },
+            saveEdit2() {
+                this.editVisible2 = false;
                 this.$message.success(`已发送邮件至预留邮箱`);
             },
             // 分页导航
@@ -164,6 +193,10 @@
             test(){
                 this.saveEdit();
                 this.sendEmail();
+            },
+            test2(){
+                this.saveEdit2();
+                this.sendAllEmail();
             }
         }
     }

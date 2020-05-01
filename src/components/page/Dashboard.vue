@@ -130,7 +130,7 @@ export default {
                 height: '300',
                 sources: [{
                     type: "rtmp/mp4",
-                    src: "rtmp://192.168.1.109:1935/live/home"
+                    src: "rtmp://localhost:1935/live/home"
                 }],
                 techOrder: ['flash'],
                 autoplay: false,
@@ -202,6 +202,7 @@ export default {
             this.$axios.post('http://localhost:9099/tourist/count/homeGetInfo',{address:this.address}).then(
                 successResponse => {
                     that.tableData = successResponse.data
+                    this.$message.success('查看成功');
                 }
             )
         },

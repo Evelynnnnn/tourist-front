@@ -7,12 +7,13 @@
                     <el-input v-model="param.username" placeholder="username">
                         <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
                     </el-input>
+                    <el-button type="primary" @click="getCode">获取验证码</el-button>
                 </el-form-item>
-                <el-form-item prop="password">
+                <el-form-item prop="code">
                     <el-input
-                        type="password"
-                        placeholder="password"
-                        v-model="param.password"
+                        type="code"
+                        placeholder="code"
+                        v-model="param.code"
                         @keyup.enter.native="submitForm">
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
@@ -26,20 +27,25 @@
 </template>
 
 <script>
+import ElementUI from 'element-ui';
 export default {
     data: function() {
         return {
             param: {
                 username: this.username,
-                password: this.password,
+                code: this.code,
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-                password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+                code: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
             },
         };
     },
     methods: {
+        getCode(){
+            this.$axios.post('http://localhost:9099/tourist/user/confirm',{username:this.param.username}).then(successResponse => {
+            })
+        },
         submitForm() {
             this.$refs.login.validate(valid => {
                 if (valid) {
@@ -55,15 +61,25 @@ export default {
         },
         loginCheck() {
             this.$axios
-                .post('http://localhost:9099/tourist/user/login', {
+                .post('http://localhost:9099/tourist/user/loginCheck', {
                     username: this.param.username,
-                    password: this.param.password
+                    code: this.param.code
                 })
                 .then(successResponse => {
                     if (successResponse.data === true) {
                         localStorage.setItem('ms_username', this.param.username);
+                        ElementUI.Notification({
+                            message: '登录成功',
+                            type: 'success'
+                        });
                         this.$router.push('/')
                         this.ipGet()
+                    }else{
+                        ElementUI.Notification({
+                            title: '警告',
+                            message: '验证码错误',
+                            type: 'error'
+                        });
                     }
                 })
                 .catch(failResponse => {

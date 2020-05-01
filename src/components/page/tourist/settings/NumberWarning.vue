@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card style="height: 300px;width: 700px;float:left">
+        <el-card style="height: 250px;width:100%;float:left">
             人数预警轮播
             <div class="messege-box">
                 <div class="messege-content">
@@ -15,44 +15,43 @@
                 </div>
             </div>
         </el-card>
-        <el-card style="height: 300px;width: 530px;float: right">
-            实时人数轮播
-            <div class="messege-box">
-                <div class="messege-content">
-                    <ul :style="{ 'margin-top': marginTop + '%' }">
-                        <li v-for="(item, index) in getData" :key="index">
-                            <a>
-                                <icon :type="'tongzhi1'" :size="'1.5rem'" :color="'#F0FF00'"></icon>
-                                {{item.name}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </el-card>
-
-        <el-card style="top: 350px;width: 1248px;height:300px;position: absolute" >
-            <div id="main" style="width: 1248px;height: 300px;"></div>
+        <el-card style="top: 300px;width:97%;height:400px;position: absolute" >
+            <el-select v-model="value" clearable placeholder="请选择" value-key="value" @change="currentSel(value)">
+                <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.label">
+                </el-option>
+            </el-select>
+            <el-button @click="sdata">查询</el-button>
+            <div id="main" style="width: 100%;height: 300px;"></div>
         </el-card>
         </div>
 </template>
 
 <script>
     import echarts from 'echarts'
+    import ElementUI from 'element-ui';
     export default {
         name: '',
         props: {
             data: Array
         },
         created() {
-          this.sdata();
-          this.drawLine('main');
+            this.getX();
+            this.getY();
+            this.getAddressName();
+            this.sdata();
         },
         data() {
             return {
+                address:'',
+                options:[],
                 charts: '',
                 /*	opinion: ["1", "3", "3", "4", "5"],*/
-                opinionData: ["3", "2", "4", "4", "5","3", "2", "4", "4", "5","3", "2", "4", "4", "5"],
+                xData:[],
+                opinionData: [],
                 getData:{},
                 activeIndex: 0
             };
@@ -78,9 +77,58 @@
             this.drawLine('main')
         },
         methods: {
-            sdata() {
-                this.getData = [{name:'123'},{name:"456"},{name:'123'},{name:"456"},{name:'123'},{name:"456"},{name:'123'},{name:"456"},{name:'123'},{name:"456"}];
+            getX(){
+                this.$axios.get('http://localhost:9099/tourist/warning/warningLineX'+'?address='+this.address).then(
+                    successResponse => {
+                        this.xData = successResponse.data
+                        this.drawLine('main');
+                    }
+                )
             },
+            getY(){
+                this.$axios.get('http://localhost:9099/tourist/warning/warningLineY'+'?address='+this.address).then(
+                    successResponse => {
+                        this.opinionData = successResponse.data
+                        this.drawLine('main')
+                    }
+                )
+            },
+            // getSeries(){
+            //     const that = this
+            //     this.$axios.post('http://localhost:9099/tourist/count/todayCount',{
+            //         date:this.param.chooseDate,
+            //         address:this.param.address
+            //     }).then( successResponse => {
+            //         that.series = successResponse.data
+            //         this.drawLine('main');
+            //     })
+            // },
+            getAddressName(){
+                const that = this
+                this.$axios.get('http://localhost:9099/tourist/count/allAddressName').then(successResponse => {
+                    that.options = successResponse.data
+                })
+            },
+            currentSel(selVal) {
+                this.address = selVal
+            },
+            sdata() {
+                const that = this
+                this.$axios.post('http://localhost:9099/tourist/warning/todayWarning',{address:that.address}).then(successResponse => {
+                    that.getData = successResponse.data
+                    if(successResponse.status === 200){
+                        ElementUI.Notification({
+                            message: '查询成功',
+                            type: 'success'
+                        })
+                    }else{
+                        ElementUI.Notification({
+                            message: '查询失败',
+                            type: 'error'
+                        })
+                    }
+                })
+             },
             drawLine(id) {
                 this.charts = echarts.init(document.getElementById(id))
                 this.charts.setOption({
@@ -88,7 +136,7 @@
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['近七日收益']
+                        data: ['今日人数预警']
                     },
                     grid: {
                         left: '3%',
@@ -105,15 +153,18 @@
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: ["1","2","3","4","5","1","2","3","4","5","1","2","3","4","5"]
-
+                        data: this.xData,
+                        axisLabel: {
+                            interval:0,
+                            rotate:-60
+                        }
                     },
                     yAxis: {
                         type: 'value'
                     },
 
                     series: [{
-                        name: '近七日收益',
+                        name: '今日人数预警',
                         type: 'line',
                         stack: '总量',
                         data: this.opinionData
@@ -153,7 +204,7 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                         white-space: nowrap;
-                        color: #ff4d51;
+                        color: #ff5900;
                         text-decoration: none;
                         background: rgba(216, 191, 216, 0.1);
                         border-radius: 5px;
