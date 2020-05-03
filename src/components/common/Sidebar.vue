@@ -178,10 +178,14 @@ export default {
                             index: 'sendTopic',
                             title: '下发通知'
                         },
+                        // {
+                        //     index:'userManage',
+                        //     title:'人员管理'
+                        // },
                         {
-                            index:'userManage',
-                            title:'人员管理'
-                        }
+                            index: 'permission',
+                            title: '人员管理'
+                        },
                     ]
                 },
                 {

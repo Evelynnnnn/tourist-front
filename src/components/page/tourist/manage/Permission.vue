@@ -33,7 +33,7 @@
                         >{{scope.row.state}}</el-tag>
                     </template>
                 </el-table-column>
-
+                <el-table-column prop="dutyAddress" label="负责地点"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -65,10 +65,24 @@
                             <el-input v-model="form.entryDate"></el-input>
                         </el-form-item>
                         <el-form-item label="省">
-                            <el-input v-model="form.province"></el-input>
+                            <el-select v-model="province" clearable placeholder="请选择" value-key="province" @change="currentProvinceSel(province)">
+                                <el-option
+                                        v-for="item in provinces"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.label">
+                                </el-option>
+                            </el-select>
                         </el-form-item>
                         <el-form-item label="市">
-                            <el-input v-model="form.city"></el-input>
+                            <el-select v-model="city" clearable placeholder="请选择" value-key="city" @change="currentCitySel(city)">
+                                <el-option
+                                        v-for="item in citys"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.label">
+                                </el-option>
+                            </el-select>
                         </el-form-item>
                         <el-form-item label="地址">
                             <el-input v-model="form.address"></el-input>
@@ -81,6 +95,9 @@
                         </el-form-item>
                         <el-form-item label="职位">
                             <el-input v-model="form.job"></el-input>
+                        </el-form-item>
+                        <el-form-item label="负责地点">
+                            <el-input v-model="form.dutyAddress"></el-input>
                         </el-form-item>
                     </el-form>
                     <el-button style="float: right;" type="primary" @click="saveStaff(form)">保存</el-button>
@@ -106,10 +123,24 @@
                     <el-input v-model="form.entryDate"></el-input>
                 </el-form-item>
                 <el-form-item label="省">
-                    <el-input v-model="form.province"></el-input>
+                    <el-select v-model="province" clearable placeholder="请选择" value-key="province" @change="currentProvinceSel(province)">
+                        <el-option
+                                v-for="item in provinces"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.label">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="市">
-                    <el-input v-model="form.city"></el-input>
+                    <el-select v-model="city" clearable placeholder="请选择" value-key="city" @change="currentCitySel(city)">
+                        <el-option
+                                v-for="item in citys"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.label">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="地址">
                     <el-input v-model="form.address"></el-input>
@@ -122,6 +153,12 @@
                 </el-form-item>
                 <el-form-item label="职位">
                     <el-input v-model="form.job"></el-input>
+                </el-form-item>
+                <el-form-item label="状态">
+                    <el-input v-model="form.state"></el-input>
+                </el-form-item>
+                <el-form-item label="负责地点">
+                    <el-input v-model="form.dutyAddress"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -145,6 +182,10 @@
                     pageIndex: 1,
                     pageSize: 10
                 },
+                province:'江苏',
+                city:'苏州',
+                provinces:[],
+                citys:[],
                 tableData: [],
                 multipleSelection: [],
                 delList: [],
@@ -157,8 +198,29 @@
         },
         created() {
             this.getTableData();
+            this.getProvinces();
         },
         methods: {
+            currentCitySel(selVal) {
+                this.city = selVal
+            },
+            currentProvinceSel(selVal) {
+                this.province = selVal
+                console.log(this.province)
+                this.getCitys(this.province)
+            },
+            getCitys(province){
+                const that = this
+                this.$axios.get("http://localhost:9099/tourist/city/getCity?name="+province).then(successResponse => {
+                    that.citys = successResponse.data
+                })
+            },
+            getProvinces(){
+                const that = this
+                this.$axios.get("http://localhost:9099/tourist/city/allProvince").then(successResponse => {
+                    that.provinces = successResponse.data
+                })
+            },
             handleClose(done) {
                 this.$confirm('确认关闭？')
                     .then(_ => {
@@ -237,6 +299,8 @@
             saveEdit() {
                 this.$axios.post('http://localhost:9099/tourist/staff/updateStaff',{staff:this.form})
                 this.editVisible = false;
+                this.form.province = this.province
+                this.form.city = this.city
                 this.$message.success(`修改成功`);
                 this.$set(this.tableData, this.idx, this.form);
             },

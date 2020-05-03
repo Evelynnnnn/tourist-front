@@ -28,11 +28,11 @@ export default new Router({
                     path:'/test',
                     component: () => import( '../components/page/tourist/settings/NumberWarning')
                 },
-                {
-                    path:'/userManage',
-                    component: () => import( '../components/page/tourist/manage/UserManage'),
-                    meta: {title: '人员管理'}
-                },
+                // {
+                //     path:'/userManage',
+                //     component: () => import( '../components/page/tourist/manage/UserManage'),
+                //     meta: {title: '人员管理'}
+                // },
                 // {
                 //     path: '/icon',
                 //     component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
@@ -113,8 +113,8 @@ export default new Router({
                 {
                     // 权限页面
                     path: '/permission',
-                    component: () => import(/* webpackChunkName: "permission" */ '../components/page/Permission.vue'),
-                    meta: { title: '权限测试', permission: true }
+                    component: () => import(/* webpackChunkName: "permission" */ '../components/page/tourist/manage/Permission.vue'),
+                    meta: { title: '人员管理', permission: true }
                 },
                 {
                     path: '/404',
