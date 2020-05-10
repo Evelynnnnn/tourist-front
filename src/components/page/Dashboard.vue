@@ -124,7 +124,7 @@ export default {
             picture:'',
             tabPosition: 'left',
             tableData:[],
-            address:'测试1',
+            address:'1号地点',
             name: localStorage.getItem('ms_username'),
             playerOptions: {
                 height: '300',
@@ -207,27 +207,27 @@ export default {
             )
         },
         getPersonNumber1(){
-            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试1').then(successResponse => {
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=1号地点').then(successResponse => {
                 this.addressOne =  successResponse.data
             })
         },
         getPersonNumber2(){
-            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试2').then(successResponse => {
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=2号地点').then(successResponse => {
                 this.addressTwo =  successResponse.data
             })
         },
         getPersonNumber3(){
-            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试3').then(successResponse => {
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=3号地点').then(successResponse => {
                 this.addressThree =  successResponse.data
             })
         },
         getPersonNumber4(){
-            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试4').then(successResponse => {
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=4号地点').then(successResponse => {
                 this.addressFour =  successResponse.data
             })
         },
         getPersonNumber5(){
-            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=测试5').then(successResponse => {
+            this.$axios.get('http://localhost:9099/tourist/count/personNumber?address=5号地点').then(successResponse => {
                 this.addressFive =  successResponse.data
             })
         },

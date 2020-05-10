@@ -26,7 +26,7 @@
                         <el-button
                                 type="text"
                                 icon="el-icon-edit"
-                                @click="handleEdit(scope.$index, scope.row)"
+                                @click="handleEdit1(scope.$index, scope.row)"
                         >布置工作</el-button>
                     </template>
                 </el-table-column>
@@ -35,7 +35,7 @@
                     <el-button
                             type="primary"
                             icon="el-icon-edit"
-                            @click="handleEdit()"
+                            @click="handleEdit2()"
                     >一键全部布置</el-button>
             </div>
             <div class="pagination">
@@ -166,14 +166,13 @@
                 this.multipleSelection = [];
             },
             // 编辑操作
-            handleEdit(index, row) {
+            handleEdit1(index, row) {
                 this.idx = index;
                 this.form = row;
                 this.editVisible = true;
             },
-            handleEdit(index, row) {
-                this.idx = index;
-                this.form = row;
+            handleEdit2(index, row) {
+                
                 this.editVisible2 = true;
             },
             // 保存编辑

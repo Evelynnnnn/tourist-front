@@ -46,7 +46,7 @@
         },
         data() {
             return {
-                address:'',
+                address:'1号地点',
                 options:[],
                 charts: '',
                 /*	opinion: ["1", "3", "3", "4", "5"],*/
@@ -136,7 +136,7 @@
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['今日人数预警']
+                        data: ['人数预警']
                     },
                     grid: {
                         left: '3%',
@@ -164,7 +164,7 @@
                     },
 
                     series: [{
-                        name: '今日人数预警',
+                        name: '人数预警',
                         type: 'line',
                         stack: '总量',
                         data: this.opinionData

@@ -28,7 +28,7 @@
     export default {
         data() {
             return {
-                value:'测试1',
+                value:'1号地点',
                 options:[],
                 param: {
                     date:this.chooseDate,

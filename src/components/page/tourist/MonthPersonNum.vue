@@ -40,7 +40,7 @@
             return {
                 year:'2020',
                 month:'1',
-                value:'测试1',
+                value:'1号地点',
                 years:[],
                 months:[],
                 options:[],
