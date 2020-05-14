@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="baf0bbac-b774-4e45-9be8-e4db11252b4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Dashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/DayPersonNum.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/DayPersonNum.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/MonthPersonNum.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/MonthPersonNum.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/MoreDayPersonNum.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/MoreDayPersonNum.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/WeekPersonNum.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/WeekPersonNum.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/manage/SendTopic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/manage/SendTopic.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/settings/NumberWarning.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/settings/NumberWarning.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/manage/Permission.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/manage/Permission.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +152,10 @@
       <workItem from="1588492788253" duration="10627000" />
       <workItem from="1589041374411" duration="264000" />
       <workItem from="1589041874778" duration="1464000" />
-      <workItem from="1589096054037" duration="3221000" />
+      <workItem from="1589096054037" duration="3857000" />
+      <workItem from="1589385903355" duration="291000" />
+      <workItem from="1589386586370" duration="1066000" />
+      <workItem from="1589442660871" duration="1982000" />
     </task>
     <task id="LOCAL-00001" summary="2020-04-23-NO.1-commit test">
       <created>1587631850978</created>
@@ -223,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588516244684</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="2020-05-10&#10;完成全部功能">
+      <created>1589110193387</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1589110193387</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,13 +255,14 @@
     <MESSAGE value="2020-04-28&#10;完成&#10;人数预警查看页面" />
     <MESSAGE value="2020-05-02&#10;完成全部功能（可能再增加账户管理功能）" />
     <MESSAGE value="2020-05-02&#10;完成全部功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="2020-05-02&#10;完成全部功能" />
+    <MESSAGE value="2020-05-10&#10;完成全部功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="2020-05-10&#10;完成全部功能" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="385" y="0" key="CommitChangelistDialog2" timestamp="1588516242891">
+    <state x="385" y="0" key="CommitChangelistDialog2" timestamp="1589110191171">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="385" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588516242891" />
+    <state x="385" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1589110191171" />
     <state x="549" y="170" key="FileChooserDialogImpl" timestamp="1587632936792">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

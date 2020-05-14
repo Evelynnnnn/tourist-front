@@ -199,6 +199,7 @@
         created() {
             this.getTableData();
             this.getProvinces();
+            this.getCitys(this.province)
         },
         methods: {
             currentCitySel(selVal) {
@@ -206,7 +207,6 @@
             },
             currentProvinceSel(selVal) {
                 this.province = selVal
-                console.log(this.province)
                 this.getCitys(this.province)
             },
             getCitys(province){
@@ -241,6 +241,8 @@
                 if (Object.keys(form).length==0){
                     this.$message.error('请输入值')
                 }else{
+                    this.form.province = this.province
+                    this.form.city = this.city
                     this.$axios.post('http://localhost:9099/tourist/staff/addStaff',{staff:this.form})
                     this.editVisible = false;
                     this.$message.success(`保存成功`);
