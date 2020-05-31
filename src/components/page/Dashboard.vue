@@ -148,6 +148,7 @@ export default {
         }
     },
     created() {
+        this.getHomeInfo();
         this.getLastLoginAddress();
         this.getLastLoginTime();
         this.getTodayWeather();
