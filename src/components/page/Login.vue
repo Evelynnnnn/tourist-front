@@ -44,6 +44,9 @@ export default {
     methods: {
         getCode(){
             this.$axios.post('http://localhost:9099/tourist/user/confirm',{username:this.param.username}).then(successResponse => {
+                if(successResponse.status == 200){
+                    this.$message.success('验证码发送成功，请查收');
+                }
             })
         },
         submitForm() {

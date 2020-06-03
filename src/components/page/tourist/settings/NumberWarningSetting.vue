@@ -167,7 +167,7 @@
                 this.$message.success(`修改成功`);
                 this.$set(this.tableData, this.idx, this.form);
             },
-            saveEdit() {
+            saveEdit2() {
                 this.editVisible2 = false;
                 this.$message.success(`修改成功`);
                 this.$set(this.tableData, this.idx, this.form);
@@ -183,6 +183,7 @@
                         console.log(successResponse)
                     }
                 )
+                location.reload()
                 this.saveEdit()
             },
             settingAll(){
@@ -191,7 +192,8 @@
                         console.log(successResponse)
                     }
                 )
-                this.saveEdit()
+                location.reload()
+                this.saveEdit2()
             }
         }
     }

@@ -21,7 +21,7 @@
                 </el-card>
                 <el-card shadow="hover" style="height:340px;width: 420px">
                     <div slot="header" class="clearfix">
-                        <el-select v-model="value" clearable placeholder="请选择" value-key="value" @change="currentSel(value)">
+                        <el-select v-model="value" clearable placeholder="1号地点" value-key="value" @change="currentSel(value)">
                             <el-option
                                     v-for="item in options"
                                     :key="item.value"
@@ -37,7 +37,7 @@
             <el-col :span="16">
                 <el-card shadow="hover" style="height:240px;margin-bottom: 20px;">
                     <div slot="header" class="clearfix" style="height:50px;float: right">
-                        <el-select v-model="value" clearable placeholder="请选择" value-key="value" @change="currentSel(value)">
+                        <el-select v-model="value" clearable placeholder="1号地点" value-key="value" @change="currentSel(value)">
                             <el-option
                                     v-for="item in options"
                                     :key="item.value"

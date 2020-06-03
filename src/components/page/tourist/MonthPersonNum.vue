@@ -39,7 +39,7 @@
         data() {
             return {
                 year:'2020',
-                month:'1',
+                month:'5',
                 value:'1号地点',
                 years:[],
                 months:[],

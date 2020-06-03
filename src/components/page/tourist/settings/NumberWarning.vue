@@ -16,7 +16,7 @@
             </div>
         </el-card>
         <el-card style="top: 300px;width:97%;height:400px;position: absolute" >
-            <el-select v-model="value" clearable placeholder="请选择" value-key="value" @change="currentSel(value)">
+            <el-select v-model="value" clearable placeholder="1号地点" value-key="value" @change="currentSel(value)">
                 <el-option
                         v-for="item in options"
                         :key="item.value"
