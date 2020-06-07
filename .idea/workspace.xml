@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="baf0bbac-b774-4e45-9be8-e4db11252b4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Dashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/MonthPersonNum.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/MonthPersonNum.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/settings/NumberWarning.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/settings/NumberWarning.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/tourist/settings/NumberWarningSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/tourist/settings/NumberWarningSetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Header.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +159,14 @@
       <workItem from="1590412961999" duration="1429000" />
       <workItem from="1590929777839" duration="618000" />
       <workItem from="1590930415960" duration="324000" />
-      <workItem from="1591176694133" duration="4550000" />
+      <workItem from="1591176694133" duration="4616000" />
+      <workItem from="1591201136020" duration="2044000" />
+      <workItem from="1591270233148" duration="1402000" />
+      <workItem from="1591355345471" duration="2735000" />
+      <workItem from="1591417065800" duration="38000" />
+      <workItem from="1591417114892" duration="83000" />
+      <workItem from="1591417333148" duration="4057000" />
+      <workItem from="1591521338413" duration="334000" />
     </task>
     <task id="LOCAL-00001" summary="2020-04-23-NO.1-commit test">
       <created>1587631850978</created>
@@ -249,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590930512329</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="2020-06-03&#10;修改部分代码">
+      <created>1591199750492</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1591199750492</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,25 +290,26 @@
     <MESSAGE value="2020-05-10&#10;完成全部功能" />
     <MESSAGE value="2020-05-15&#10;修改部分代码" />
     <MESSAGE value="2020-05-31&#10;修改部分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="2020-05-31&#10;修改部分代码" />
+    <MESSAGE value="2020-06-03&#10;修改部分代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="2020-06-03&#10;修改部分代码" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="385" y="0" key="CommitChangelistDialog2" timestamp="1590930509563">
+    <state x="385" y="0" key="CommitChangelistDialog2" timestamp="1591199748122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="385" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590930509563" />
-    <state x="549" y="170" key="FileChooserDialogImpl" timestamp="1587632936792">
+    <state x="385" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591199748122" />
+    <state x="549" y="170" key="FileChooserDialogImpl" timestamp="1591438543152">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587632936792" />
+    <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591438543152" />
     <state x="272" y="57" key="SettingsEditor" timestamp="1583300171384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="272" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583300171384" />
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1590930726672">
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1591199756712">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590930726672" />
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591199756712" />
     <state x="2" y="66" width="1226" height="472" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1588344680958">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -307,10 +318,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="418" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1585389510277" />
-    <state x="390" y="138" width="755" height="548" key="find.popup" timestamp="1591195239222">
+    <state x="390" y="138" width="755" height="548" key="find.popup" timestamp="1591438554671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="390" y="138" width="755" height="548" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1591195239222" />
+    <state x="390" y="138" width="755" height="548" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1591438554671" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1587525388871">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
