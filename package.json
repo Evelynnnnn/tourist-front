@@ -15,7 +15,7 @@
     "js-cookie": "^2.2.1",
     "less-loader": "^4.1.0",
     "mavon-editor": "^2.6.17",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "stompjs": "^2.3.3",
     "vue": "^2.6.10",
     "vue-cropperjs": "^3.0.0",
